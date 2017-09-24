@@ -8,13 +8,17 @@ class RemoveCounter extends Component {
         super(props);
     }
     
+    countDown(){
+        return this.props.removeCounter()
+    }
+    
     render(){
         return(
             <div className="container">
               <form>
                 <div className="field is-grouped">
                     <div className="control">
-                    <button className="button is-primary" onClick={(e) => {e.preventDefault();this.props.dispatch(removeCounter())}}>
+                    <button className="button is-primary" onClick={(e) => {e.preventDefault();this.countDown()}}>
                         Remove
                     </button>
                     </div>
@@ -25,10 +29,6 @@ class RemoveCounter extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return { actions: bindActionCreators(removeCounter, dispatch)
-        
-    };
-}
 
-export default connect(mapDispatchToProps)(RemoveCounter);
+
+export default connect(null, { removeCounter })(RemoveCounter);
